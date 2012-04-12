@@ -1,0 +1,32 @@
+{
+  "name": "smoke",
+  "description": "JS Build Tool",
+  "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
+  "tags": [
+    "build"
+  ],
+  "version": "0.0.0",
+  "engines": {
+    "node": ">= 0.4.x < 0.7.0"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "expect.js": "0.1.x",
+    "mocha": "*"
+  },
+  "optionalDepencies": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/DamonOehlman/smoke.git"
+  },
+  "bugs": {
+    "url": "http://github.com/DamonOehlman/smoke/issues"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec -t 10000"
+  },
+  "contributors": [],
+  "optionalDependencies": {}
+}
