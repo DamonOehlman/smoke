@@ -18,6 +18,6 @@ Some of the component pieces required to build smoke have already been built:
 
 1. [Rigger](/DamonOehlman/rigger) - Include files in other files
 2. [StreamClean](/DamonOehlman/streamclean) - Remove or change lines in a stream
-3. [Pipeline](/pgte/pipeline) or [event-streams][/dominictarr/event-streams] - useful helpers for combining streams, and in event event-stream's case nice helpers for making an async function slot into a piped stream simply.
+3. [Pipeline](/pgte/pipeline) or [event-stream](/dominictarr/event-stream) - useful helpers for combining streams, and in event event-stream's case nice helpers for making an async function slot into a piped stream simply.
 4. [jshint](https://github.com/jshint/node-jshint)
 5. [UglifyJS](https://github.com/mishoo/UglifyJS)
