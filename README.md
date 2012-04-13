@@ -6,6 +6,10 @@ __CURRENT STATUS:__ [Call for Issues](https://github.com/DamonOehlman/smoke/issu
 
 You know best what you need in a build tool.  I only know what I need.  To make sure what is developed meets the broadest possible requirements please [log issues](https://github.com/DamonOehlman/smoke/issues/new) and engage in discussion.
 
+## Use Grunt
+
+After working with the [Grunt API](https://github.com/cowboy/grunt/blob/master/docs/api.md) and successfully integrating Rigger with grunt (via the [grunt-rigger plugin](https://github.com/DamonOehlman/grunt-rigger)) it's highly unlikely that I'm going to put any effort into building __yet another build tool__.  Grunt will likely to exactly what you need, and it's got some great features already baked in that make it a whole pile of JS build yumminess.  You should definitely try it out!
+
 ## General Design Goals
 
 1. Very [Stream](http://nodejs.org/docs/latest/api/stream.html) centric.
