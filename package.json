@@ -9,11 +9,21 @@
   "engines": {
     "node": ">= 0.4.x < 0.7.0"
   },
+  "main": "./lib/smoke.js",
   "dependencies": {
+    "async": "0.1.x",
+    "debug": "*",
+    "findit": "0.1.x",
+    "minimatch": "0.2.x",
+    "nopt": "1.x.x",
+    "pipeline": "0.1.x",
+    "out": "*",
+    "sniff": "0.1.x"
   },
   "devDependencies": {
     "expect.js": "0.1.x",
-    "mocha": "*"
+    "mocha": "1.x.x",
+    "rigger": "0.2.x"
   },
   "optionalDepencies": {
   },

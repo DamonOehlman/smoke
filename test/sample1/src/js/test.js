@@ -1,0 +1,1 @@
+//= github://DamonOehlman/snippets/html5/qsa
