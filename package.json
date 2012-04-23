@@ -15,8 +15,9 @@
     "debug": "*",
     "findit": "0.1.x",
     "minimatch": "0.2.x",
+    "mkdirp": "0.3.x",
     "nopt": "1.x.x",
-    "pipeline": "0.1.x",
+    "pipeline": "git://github.com/DamonOehlman/pipeline.git",
     "out": "*",
     "sniff": "0.1.x"
   },

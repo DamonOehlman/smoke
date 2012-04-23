@@ -1,1 +1,3 @@
-//= github://DamonOehlman/snippets/html5/qsa
+var test = true;
+
+//= github://DamonOehlman/snippets/qsa
