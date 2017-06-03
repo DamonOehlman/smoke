@@ -1,0 +1,2 @@
+# the default glob does not include node_modules of subdirectories
+**/node_modules/*

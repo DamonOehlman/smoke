@@ -1,0 +1,10 @@
+{
+  "extends": [
+    "djo-base"
+  ],
+  "env": {
+    "node": true
+  },
+  "rules": {
+  }
+}
