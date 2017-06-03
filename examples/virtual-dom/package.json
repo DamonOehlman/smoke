@@ -1,0 +1,13 @@
+{
+  "name": "smoke-virtual-dom-example",
+  "version": "1.0.0",
+  "main": "app.entry.js",
+  "author": "Damon Oehlman <damon.oehlman@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "virtual-dom": "^2.1.1"
+  },
+  "scripts": {
+    "build": "../../bin/smoke"
+  }
+}

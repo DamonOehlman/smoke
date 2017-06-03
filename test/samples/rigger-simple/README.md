@@ -1,1 +1,0 @@
-This is a sample project that demonstrates using [rigger](https://github.com/DamonOehlman/rigger) to build includes.

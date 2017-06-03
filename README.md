@@ -1,27 +1,61 @@
-# Smoke
 
-Smoke will be a JS build tool that will replace [Interleave](https://github.com/DamonOehlman/interleave).  A lot has been learned over the last six months and it's time to start with a clean slate and create a tool that make it a breeze to build re-usable, tested JS for as many environments as possible.
+# smoke
 
-__CURRENT STATUS:__ [Call for Issues](https://github.com/DamonOehlman/smoke/issues)
+Smoke is an opinionated build tool. It's pretty much the polar opposite to
+[webpack](https://github.com/webpack/webpack) as it only provides the configuration
+options for the tools that it is configured for below.
 
-You know best what you need in a build tool.  I only know what I need.  To make sure what is developed meets the broadest possible requirements please [log issues](https://github.com/DamonOehlman/smoke/issues/new) and engage in discussion.
 
-## Use Grunt
+[![NPM](https://nodei.co/npm/smoke.png)](https://nodei.co/npm/smoke/)
 
-After working with the [Grunt API](https://github.com/cowboy/grunt/blob/master/docs/api.md) and successfully integrating Rigger with grunt (via the [grunt-rigger plugin](https://github.com/DamonOehlman/grunt-rigger)) it's highly unlikely that I'm going to put any effort into building __yet another build tool__.  Grunt will likely to exactly what you need, and it's got some great features already baked in that make it a whole pile of JS build yumminess.  You should definitely try it out!
+[![bitHound Score](https://www.bithound.io/github/DamonOehlman/smoke/badges/score.svg)](https://www.bithound.io/github/DamonOehlman/smoke) 
 
-## General Design Goals
+## Unfeatures
 
-1. Very [Stream](http://nodejs.org/docs/latest/api/stream.html) centric.
-2. Pluggable API
-3. Do as little as possible in the core, with composition through streams (1) and an API (2) this should be absolutely fine.
+- No pluggable loaders (what you get is listed below).  In the case that these tools
+do support configuration (which most of them do) you can still apply customisations
+through the use of their normal configuration files.
 
-## Component Pieces
+- Babel compilation by default (yep ES6 module loading only)
 
-Some of the component pieces required to build smoke have already been built:
+- This is routed through [browserify](https://github.com/substack/node-browserify)
+  so we can access useful browser friendly node modules in our applications. (e.g.
+  [hyperquest](https://github.com/substack/hyperquest),
+  [virtual-dom](https://github.com/Matt-Esch/virtual-dom), and others).  For
+  more information see the information on the processing pipeline below.
 
-1. [Rigger](/DamonOehlman/rigger) - Include files in other files
-2. [StreamClean](/DamonOehlman/streamclean) - Remove or change lines in a stream
-3. [Pipeline](/pgte/pipeline) or [event-stream](/dominictarr/event-stream) - useful helpers for combining streams, and in event event-stream's case nice helpers for making an async function slot into a piped stream simply.
-4. [jshint](https://github.com/jshint/node-jshint)
-5. [UglifyJS](https://github.com/mishoo/UglifyJS)
+- Rollup used for bundle optimization
+
+- [PostCSS](https://github.com/postcss/postcss) used for CSS preprocessing.
+
+- [ESLint](http://eslint.org/) for linting. 
+
+- No live reload for development (see `smoke-dev-server`) because you really
+can reload the page yourself...
+
+## Usage
+
+1. Make a directory for your application.
+2. Create any number of `*.entry.js` files and `*.entry.css` files in the
+directory structure in this directory (with the exception of the `test/` directory,
+which is reserved for any tests you decide to write).
+3. Add any of the tool specific configuration files to the application directory.
+4. Run `smoke`.
+
+## License(s)
+
+### ISC
+
+Copyright (c) 2017, Damon Oehlman <damon.oehlman@gmail.com>
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
