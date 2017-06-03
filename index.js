@@ -3,6 +3,8 @@ const async = require('async');
 const glob = require('glob');
 const flatten = require('whisk/flatten');
 const path = require('path');
+const buildJS = require('./lib/buildjs');
+const buildCSS = require('./lib/buildcss');
 
 const patterns = [
   '**/*.entry.js',
@@ -11,9 +13,9 @@ const patterns = [
 ];
 
 const builders = {
-  'js': require('./lib/buildjs'),
-  'es6': require('./lib/buildjs'),
-  'css': require('./lib/buildcss')
+  js: buildJS,
+  es6: buildJS,
+  css: buildCSS
 };
 
 /**
@@ -42,7 +44,7 @@ options for the tools that it is configured for below.
 
 - [PostCSS](https://github.com/postcss/postcss) used for CSS preprocessing.
 
-- [ESLint](http://eslint.org/) for linting. 
+- [ESLint](http://eslint.org/) for linting.
 
 - No live reload for development (see `smoke-dev-server`) because you really
   can reload the page yourself...
@@ -63,13 +65,13 @@ To be completed.
 **/
 
 module.exports = (opts, callback) => {
-  debug('searching for files in:', process.cwd())
+  debug('searching for files in:', process.cwd());
   async.map(patterns, glob, (err, allEntryPoints) => {
     if (err) {
       return callback(err);
     }
 
-    async.forEach(allEntryPoints.reduce(flatten), build, callback);
+    return async.forEach(allEntryPoints.reduce(flatten), build, callback);
   });
 };
 
@@ -80,6 +82,6 @@ function build(entryPoint, callback) {
   if (!builder) {
     return callback(new Error(`no builder for entry point ${entryPoint}`));
   }
-  
-  builder(entryPoint, callback);
+
+  return builder(entryPoint, callback);
 }
