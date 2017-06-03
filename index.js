@@ -2,6 +2,7 @@ const debug = require('debug')('smoke');
 const async = require('async');
 const glob = require('glob');
 const flatten = require('whisk/flatten');
+const path = require('path');
 
 const patterns = [
   '**/*.entry.js',
@@ -62,12 +63,23 @@ To be completed.
 **/
 
 module.exports = (opts, callback) => {
+  debug('searching for files in:', process.cwd())
   async.map(patterns, glob, (err, allEntryPoints) => {
     if (err) {
       return callback(err);
     }
 
-    const entryPoints = allEntryPoints.reduce(flatten);
-    console.log(entryPoints);
+    async.forEach(allEntryPoints.reduce(flatten), build, callback);
   });
 };
+
+function build(entryPoint, callback) {
+  const fileType = path.extname(entryPoint).slice(1).toLowerCase();
+  const builder = builders[fileType];
+
+  if (!builder) {
+    return callback(new Error(`no builder for entry point ${entryPoint}`));
+  }
+  
+  builder(entryPoint, callback);
+}
