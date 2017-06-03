@@ -7,10 +7,14 @@
   ],
   "version": "0.0.0",
   "dependencies": {
+    "async": "^2.4.1",
     "babelify": "^7.3.0",
     "browserify": "^14.4.0",
+    "debug": "^2.6.8",
+    "glob": "^7.1.2",
     "rollup-plugin-babel": "^2.7.1",
-    "rollupify": "^0.3.9"
+    "rollupify": "^0.3.9",
+    "whisk": "^1.3.0"
   },
   "devDependencies": {
     "gendocs": "^2.0.0"

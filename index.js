@@ -1,3 +1,20 @@
+const debug = require('debug')('smoke');
+const async = require('async');
+const glob = require('glob');
+const flatten = require('whisk/flatten');
+
+const patterns = [
+  '**/*.entry.js',
+  '**/*.entry.es6',
+  '**/*.entry.css'
+];
+
+const builders = {
+  'js': require('./lib/buildjs'),
+  'es6': require('./lib/buildjs'),
+  'css': require('./lib/buildcss')
+};
+
 /**
 
 # smoke
@@ -36,23 +53,21 @@ options for the tools that it is configured for below.
   directory structure in this directory (with the exception of the `test/` directory,
   which is reserved for any tests you decide to write).
 3. Add any of the tool specific configuration files to the application directory.
-4. Run `smoke`.
+4. Run `smoke`
+
+## Processing Pipeline
+
+To be completed.
 
 **/
 
-const rollupify = require('rollupify');
-const babelify = require('babelify');
-const browserify = require('browserify');
+module.exports = (opts, callback) => {
+  async.map(patterns, glob, (err, allEntryPoints) => {
+    if (err) {
+      return callback(err);
+    }
 
-const baseRollupPlugins = [
-  require('rollup-plugin-babel')({
-    exclude: [
-      'node_modules/**',
-      'test/**'
-    ]
-  })
-];
-
-module.exports = (opts) => {
-
+    const entryPoints = allEntryPoints.reduce(flatten);
+    console.log(entryPoints);
+  });
 };
