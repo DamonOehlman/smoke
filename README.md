@@ -2,7 +2,15 @@
 # smoke
 
 Smoke is an opinionated build tool. It's pretty much the polar opposite to
-[webpack](https://github.com/webpack/webpack) with the following (un)features:
+[webpack](https://github.com/webpack/webpack) as it only provides the configuration
+options for the tools that it is configured for below.
+
+
+[![NPM](https://nodei.co/npm/smoke.png)](https://nodei.co/npm/smoke/)
+
+[![bitHound Score](https://www.bithound.io/github/DamonOehlman/smoke/badges/score.svg)](https://www.bithound.io/github/DamonOehlman/smoke) 
+
+## Unfeatures
 
 - No pluggable loaders (what you get is listed below).  In the case that these tools
 do support configuration (which most of them do) you can still apply customisations
@@ -24,11 +32,6 @@ through the use of their normal configuration files.
 
 - No live reload for development (see `smoke-dev-server`) because you really
 can reload the page yourself...
-
-
-[![NPM](https://nodei.co/npm/smoke.png)](https://nodei.co/npm/smoke/)
-
-[![bitHound Score](https://www.bithound.io/github/DamonOehlman/smoke/badges/score.svg)](https://www.bithound.io/github/DamonOehlman/smoke) 
 
 ## Usage
 

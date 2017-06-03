@@ -3,7 +3,10 @@
 # smoke
 
 Smoke is an opinionated build tool. It's pretty much the polar opposite to
-[webpack](https://github.com/webpack/webpack) with the following (un)features:
+[webpack](https://github.com/webpack/webpack) as it only provides the configuration
+options for the tools that it is configured for below.
+
+## Unfeatures
 
 - No pluggable loaders (what you get is listed below).  In the case that these tools
   do support configuration (which most of them do) you can still apply customisations
