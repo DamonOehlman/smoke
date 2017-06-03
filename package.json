@@ -1,34 +1,19 @@
 {
   "name": "smoke",
   "description": "JS Build Tool",
-  "author": "Damon Oehlman <damon.oehlman@sidelab.com>",
+  "author": "Damon Oehlman <damon.oehlman@gmail.com>",
   "tags": [
     "build"
   ],
   "version": "0.0.0",
-  "engines": {
-    "node": ">= 0.4.x < 0.7.0"
-  },
-  "main": "./lib/smoke.js",
   "dependencies": {
-    "async": "0.1.x",
-    "debug": "*",
-    "findit": "0.1.x",
-    "formatter": "0.1.x",
-    "minimatch": "0.2.x",
-    "mkdirp": "0.3.x",
-    "nopt": "1.x.x",
-    "pipeline": "0.1.x",
-    "out": "*",
-    "sniff": "0.1.x",
-    "underscore": "1.3.x"
+    "babelify": "^7.3.0",
+    "browserify": "^14.4.0",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollupify": "^0.3.9"
   },
   "devDependencies": {
-    "expect.js": "0.1.x",
-    "mocha": "1.x.x",
-    "rigger": "0.2.x"
-  },
-  "optionalDepencies": {
+    "gendocs": "^2.0.0"
   },
   "repository": {
     "type": "git",
@@ -38,8 +23,7 @@
     "url": "http://github.com/DamonOehlman/smoke/issues"
   },
   "scripts": {
-    "test": "mocha --reporter spec -t 10000"
+    "gendocs": "gendocs > README.md"
   },
-  "contributors": [],
-  "optionalDependencies": {}
+  "license": "ISC"
 }
