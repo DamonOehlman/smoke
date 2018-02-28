@@ -1,0 +1,20 @@
+{
+  "name": "smoke",
+  "version": "1.0.0",
+  "description": "An opinionated dev server",
+  "main": "index.ts",
+  "repository": "https://github.com/DamonOehlman/smoke.git",
+  "author": "Damon Oehlman <damon.oehlman@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "st": "^1.2.2",
+    "ts-node": "^5.0.0",
+    "typescript": "^2.7.2"
+  },
+  "devDependencies": {
+    "@types/node": "^9.4.6"
+  },
+  "scripts": {
+    "demo": "pushd demo && ts-node ../index.ts; popd"
+  }
+}

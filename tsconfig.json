@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "typeRoots": ["./typings/", "./node_modules/@types/"],
+    "importHelpers": false,
+    "lib": ["es2016", "dom"],
+    "moduleResolution": "node",
+    "outDir": "target",
+    "strict": true,
+    // "skipLibCheck": true,
+    "target": "es6",
+    "sourceMap": false
+  }
+  // "include": ["pipelines", "util"]
+}
