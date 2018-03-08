@@ -1,9 +1,9 @@
 import { readFile } from 'fs';
 import { resolve, join } from 'path';
 import * as ts from 'typescript';
-import { transpileModule } from 'typescript';
-import { RequestHandler } from './index';
-import { IncomingMessage, ServerResponse } from 'http';
+import { transpile, transpileModule } from 'typescript';
+import { RequestHandler, RequestUrl } from './index';
+import { ServerResponse } from 'http';
 
 export class TypescriptHandler implements RequestHandler {
   constructor(private readonly clientFilesPath: string) {}
@@ -12,19 +12,18 @@ export class TypescriptHandler implements RequestHandler {
     return extension === '.ts';
   }
 
-  serve(req: IncomingMessage, res: ServerResponse): void {
-    if (!req.url) {
-      return this.abort(res);
-    }
-
-    const tsFile = join(this.clientFilesPath, req.url);
+  serve(url: RequestUrl, res: ServerResponse): void {
+    const tsFile = join(this.clientFilesPath, url.pathname);
     readFile(tsFile, { encoding: 'utf-8' }, (err, content) => {
       if (err) {
         return this.abort(res, err);
       }
 
       try {
-        const jsCode = transpileModule(content, {}).outputText;
+        const jsCode = transpile(content, {
+          module: 0,
+        });
+        console.log(jsCode);
 
         res.writeHead(200, {
           'content-type': 'application/javascript',

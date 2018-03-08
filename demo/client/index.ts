@@ -1,3 +1,3 @@
-const message: string = 'hello2';
+import { WELCOME_MESSAGE } from './messages';
 
-console.log(message);
+console.log(WELCOME_MESSAGE);
