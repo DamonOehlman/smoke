@@ -1,3 +1,3 @@
-import { WELCOME_MESSAGE } from './messages';
+import { Messages } from './messages';
 
-console.log(WELCOME_MESSAGE);
+console.log(Messages.foo());

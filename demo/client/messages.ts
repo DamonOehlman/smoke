@@ -1,1 +1,5 @@
-export const WELCOME_MESSAGE = 'hello';
+export class Messages {
+  static foo() {
+    return 'foo';
+  }
+}
