@@ -1,8 +1,9 @@
-import { ServerResponse } from 'http';
+import { ServerResponse, IncomingMessage } from 'http';
 
 export interface RequestHandler {
   handles(extension: string): boolean;
-  serve(url: RequestUrl, res: ServerResponse): void;
+  knowsAbout(url: RequestUrl): boolean;
+  serve(url: RequestUrl, req: IncomingMessage, res: ServerResponse): void;
 }
 
 export type RequestUrl = {

@@ -19,10 +19,12 @@ function main() {
 
     const url = parseUrl(req.url);
     const extension = url.pathname && extname(url.pathname).toLowerCase();
-    const extensionHandler = extension && handlers.filter(handler => handler.handles(extension))[0];
+    const extensionHandler = extension
+      ? handlers.filter(handler => handler.handles(extension))[0]
+      : handlers.filter(handler => handler.knowsAbout(url))[0];
 
     if (url.pathname && extensionHandler) {
-      extensionHandler.serve({ pathname: url.pathname }, res);
+      extensionHandler.serve({ pathname: url.pathname }, req, res);
     } else {
       serveStatic(req, res);
     }

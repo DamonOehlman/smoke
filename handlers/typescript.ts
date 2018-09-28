@@ -1,27 +1,59 @@
 import { readFile } from 'fs';
-import { resolve, join } from 'path';
+import { resolve, join, basename, dirname } from 'path';
 import * as ts from 'typescript';
+import * as etag from 'etag';
 import { transpile, transpileModule } from 'typescript';
 import { RequestHandler, RequestUrl } from './index';
-import { ServerResponse } from 'http';
+import { ServerResponse, IncomingMessage } from 'http';
 import { inspect } from 'util';
 
+type CacheData = {
+  etag: string;
+  data: string;
+};
+
 export class TypescriptHandler implements RequestHandler {
-  constructor(private readonly clientFilesPath: string) {}
+  private readonly cache: Map<string, CacheData>;
+  private main?: string;
+
+  constructor(private readonly clientFilesPath: string) {
+    this.cache = new Map();
+  }
 
   handles(extension: string): boolean {
     return extension === '.ts';
   }
 
-  serve(url: RequestUrl, res: ServerResponse): void {
-    const tsFile = join(this.clientFilesPath, url.pathname);
-    const program = ts.createProgram([tsFile], {
-      module: 4,
+  knowsAbout(url: RequestUrl): boolean {
+    const targetModule = join(this.clientFilesPath, basename(url.pathname, '.ts'));
+    return this.cache.has(targetModule);
+  }
+
+  serve(url: RequestUrl, req: IncomingMessage, res: ServerResponse): void {
+    const targetModule = join(this.clientFilesPath, basename(url.pathname, '.ts'));
+
+    console.log(`received request for url: ${url.pathname}`);
+
+    const cachedContent = this.cache.get(targetModule);
+    const reqEtag = req.headers['if-none-match'];
+    if (cachedContent && cachedContent.etag === reqEtag) {
+      res.writeHead(304);
+      return res.end();
+    } else if (cachedContent && !reqEtag) {
+      res.writeHead(200, {
+        'content-type': 'application/javascript',
+        etag: cachedContent.etag,
+      });
+      return res.end(cachedContent.data);
+    }
+
+    this.main = basename(targetModule, '.ts');
+    const program = ts.createProgram([`${targetModule}.ts`], {
+      module: 5,
       target: 3,
-      outFile: join(this.clientFilesPath, 'test.js'),
-      inlineSourceMap: true,
+      // inlineSourceMap: true,
       // skipLibCheck: true,
-      // outDir: this.clientFilesPath,
+      outDir: this.clientFilesPath,
     });
 
     console.log(program.getSourceFiles().map(file => file.fileName));
@@ -39,8 +71,23 @@ export class TypescriptHandler implements RequestHandler {
       handleCompilerError,
       sourceFiles: ReadonlyArray<ts.SourceFile>,
     ) => {
+      const cacheKey = join(dirname(fileName), basename(fileName, '.js'));
+
+      // cache the content
+      // TODO: make this smarter
+      this.cache.set(cacheKey, {
+        etag: etag(data),
+        data,
+      });
+
+      if (basename(fileName, '.js') !== this.main) {
+        return;
+      }
+
+      console.log(`writing file ${fileName}`);
       res.writeHead(200, {
         'content-type': 'application/javascript',
+        etag: etag(data),
       });
       res.end(data);
       // console.log('...');

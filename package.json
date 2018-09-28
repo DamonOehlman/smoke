@@ -7,11 +7,13 @@
   "author": "Damon Oehlman <damon.oehlman@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "etag": "^1.8.1",
     "st": "^1.2.2",
     "ts-node": "^5.0.0",
     "typescript": "^2.7.2"
   },
   "devDependencies": {
+    "@types/etag": "^1.8.0",
     "@types/node": "^9.4.6"
   },
   "scripts": {
