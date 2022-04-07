@@ -11,7 +11,7 @@
   },
   "main": "./lib/smoke.js",
   "dependencies": {
-    "async": "0.1.x",
+    "async": "3.2.2",
     "debug": "*",
     "findit": "0.1.x",
     "formatter": "0.1.x",
