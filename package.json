@@ -15,7 +15,7 @@
     "debug": "*",
     "findit": "0.1.x",
     "formatter": "0.1.x",
-    "minimatch": "0.2.x",
+    "minimatch": "3.0.5",
     "mkdirp": "0.3.x",
     "nopt": "1.x.x",
     "pipeline": "0.1.x",
